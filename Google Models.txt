@@ -1,7 +1,0 @@
-model1 = "gemini-2.5-flash"
-model2 = "gemini-2.5-flash-lite"
-model3 = "gemini-3-flash-preview"
-model4 = "gemini-2.5-flash-preview-09-2025" 
-model5 = "gemini-2.5-flash-lite-preview-09-2025"
-
-embedding_model = "gemini-embedding-001"
