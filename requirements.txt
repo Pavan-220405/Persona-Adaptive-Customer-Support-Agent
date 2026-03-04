@@ -1,0 +1,57 @@
+# LangChain Core
+langchain
+langchain-core
+langchain-community
+langchain-classic
+langchain-experimental
+langchainhub
+
+# LangGraph
+langgraph
+
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+google-generativeai
+
+# Hugging Face Integration
+langchain-huggingface
+transformers
+huggingface-hub
+sentence-transformers
+
+# Environment Variable Management
+python-dotenv
+
+# Machine Learning Utilities
+numpy
+
+# Frontend
+streamlit
+
+# Pydantic for Data Validation
+pydantic 
+
+# for graph visualization
+grandalf
+
+# Document loaders
+pypdf
+beautifulsoup4 
+requests
+
+# Text splitters
+langchain-text-splitters
+
+# Vector stores
+chromadb
+tiktoken
+
+# Tools 
+langchain-chroma
+rank_bm25
+tavily-python
+unstructured
+pdfminer.sixc
+
+# database
+langgraph-checkpoint-sqlite

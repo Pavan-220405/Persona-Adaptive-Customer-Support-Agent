@@ -1,0 +1,18 @@
+# virtual environment
+myenv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# environment variables
+.env
+
+# vector database
+vectorstore/
+
+# vscode settings
+.vscode/
+
+# OS files
+.DS_Store
