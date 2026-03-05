@@ -19,3 +19,8 @@ vectorstore/
 
 Google Models.txt
 HF Models.txt
+
+my_project/checkpoints/
+*.db
+*.db-shm
+*.db-wal
