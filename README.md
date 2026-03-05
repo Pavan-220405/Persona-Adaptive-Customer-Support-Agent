@@ -155,6 +155,17 @@ Each module has a clearly defined responsibility.
 ---
 
 # Project Structure
+## 🏗️ Chatbot Architecture
+
+### Initial Chatbot Architecture
+
+![Initial Chatbot Architecture](initial_chatbot_architecture.png)
+
+---
+
+### ⚡ Latency Optimized Architecture
+
+![Latency Optimized Chatbot](latency_optimized_chatbot.png)
 
 ```
 Customer_Support_Chatbot
@@ -190,42 +201,6 @@ Customer_Support_Chatbot
 ```
 
 ---
-
-# System Architecture
-
-## Original Architecture (Multiple LLM Calls)
-
-```
-START
-  │
-PersonaDetection
-  │
-EscalationDecision
-  │
-RetrievalDecision
- ├── Retrieve → Answer
- ├── GeneralAnswer
- └── HumanSupport
-  │
- END
-```
-
-This design required multiple LLM calls, increasing latency.
-
----
-
-## Optimized Architecture (Single Triage Call)
-
-```
-START
-  │
-TriageNode
- ├── Retrieve → Answer
- ├── GeneralAnswer
- └── HumanSupport
-  │
- END
-```
 
 The triage node determines:
 - persona
