@@ -20,13 +20,18 @@ class Escalation(BaseModel):
 
 # For model.with_structured_output
 class WebSearch(BaseModel):
-    web_search_required : Annotated[bool,Field(description="If the chatbot requires web search")]
+    web_search : Annotated[bool,Field(description="If the chatbot requires web search")]
+
+class Retrieval(BaseModel): 
+    retrieval : Annotated[bool,"Is retrieval necessary is it a general question"]
 
 
 # Inner Langgraph state
 class ChatbotState(BaseModel):
     query : Annotated[str,Field(...,description="Query of the user")]
     escalate : Annotated[bool,Field(description="Should the matter be escalated to humans?")] = False 
+    web_search : Annotated[bool,Field(description="If the chatbot requires web search")] 
+    retrieval : Annotated[bool,"Is retrieval necessary is it a general question"]
     persona_classification : Optional[PersonaClassification] = None 
     answer: Optional[str] = None
     docs: List[Document] = Field(default_factory=list)
