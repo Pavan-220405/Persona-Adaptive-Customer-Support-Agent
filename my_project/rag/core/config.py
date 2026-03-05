@@ -13,5 +13,4 @@ class Settings:
     GOOGLE_MODEL_HEAVY = "gemini-2.5-flash"
     HF_LLM = "meta-llama/Llama-3.2-3B-Instruct"
 
-
 settings = Settings()
