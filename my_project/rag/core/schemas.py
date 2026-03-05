@@ -30,10 +30,10 @@ class Retrieval(BaseModel):
 class ChatbotState(BaseModel):
     query : Annotated[str,Field(...,description="Query of the user")]
     escalate : Annotated[bool,Field(description="Should the matter be escalated to humans?")] = False 
-    web_search : Annotated[bool,Field(description="If the chatbot requires web search")] 
-    retrieval : Annotated[bool,"Is retrieval necessary is it a general question"]
+    # web_search : Annotated[bool,Field(description="If the chatbot requires web search")] 
+    retrieval : Annotated[bool,"Is retrieval necessary is it a general question"] = False
     persona_classification : Optional[PersonaClassification] = None 
     answer: Optional[str] = None
     docs: List[Document] = Field(default_factory=list)
-    summary : Annotated[str,Field(description="Summary of the conversation presented to human after escalation")]
+    summary : Optional[str] = None
     chat_history: Annotated[List[BaseMessage],add_messages]

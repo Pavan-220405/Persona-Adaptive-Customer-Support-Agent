@@ -1,7 +1,7 @@
 from langchain_community.document_loaders import UnstructuredPDFLoader, DirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from rag.core.config import settings
+from my_project.rag.core.config import settings
 from langchain_huggingface import HuggingFaceEmbeddings
 import warnings
 from dotenv import load_dotenv

@@ -1,15 +1,15 @@
 from langchain_community.vectorstores import Chroma
 from langchain_classic.retrievers.multi_query import MultiQueryRetriever 
-from langchain_huggingface import HuggingFaceEmbeddings, HuggingFaceEndpoint, ChatHuggingFace
-from rag.core.config import settings
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
+from my_project.rag.core.config import settings
 import warnings
 from dotenv import load_dotenv
 warnings.filterwarnings("ignore")
 load_dotenv()
 
 embedder = HuggingFaceEmbeddings(model_name=settings.HF_EMBEDDER)
-llm = HuggingFaceEndpoint(repo_id=settings.HF_LLM)
-model = ChatHuggingFace(llm=llm)
+model = ChatGoogleGenerativeAI(model=settings.GOOGLE_MODEL_LITE)
 
 def get_retriever():
     """
