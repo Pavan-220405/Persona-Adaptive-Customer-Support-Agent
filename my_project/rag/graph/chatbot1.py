@@ -65,7 +65,7 @@ def Retrieve(state : ChatbotState):
     return {'docs':docs}
 
 def GeneralAnswer(state : ChatbotState):
-    chain = general_answer_prompt | model3 
+    chain = general_answer_prompt | model1 
     result = chain.invoke({
         'persona' : state.persona_classification.persona,
         'query' : state.query,

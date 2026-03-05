@@ -5,6 +5,7 @@ class Settings:
     BASE_DIR = Path(__file__).resolve().parents[2]
     VECTOR_DATABASE_PATH = BASE_DIR / "vectorstore"
     DATA_PATH = BASE_DIR / "files"
+    CHECKPOINT_PATH = BASE_DIR / "checkpoints" / "langgraph.db"
 
     HF_EMBEDDER = "sentence-transformers/all-MiniLM-L6-v2"
     GOOGLE_EMBEDDER = "gemini-embedding-001"
