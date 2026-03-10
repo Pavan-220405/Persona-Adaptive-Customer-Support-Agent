@@ -79,7 +79,23 @@ class ChatbotState(BaseModel):
 
 
 
-class ChatInput(BaseModel):
-    thread_id : Annotated[str,"thread_id of the conversation"]
-    question : Annotated[str,"Question asked by the user"]
+# -------------------
+# FastAPI
+# ------------------
     
+
+class RegisterInput(BaseModel):
+    gmail: str
+    password: str
+    name: str
+
+
+class LoginInput(BaseModel):
+    gmail: str
+    password: str
+
+
+class ChatInput(BaseModel):
+    gmail: str
+    thread_id: str
+    question: str

@@ -14,4 +14,6 @@ class Settings:
     GOOGLE_MODEL_HEAVY = "gemini-2.5-flash"
     HF_LLM = "meta-llama/Llama-3.2-3B-Instruct"
 
+    API_KEY = "Chatbot_API_Key_220405"
+
 settings = Settings()
