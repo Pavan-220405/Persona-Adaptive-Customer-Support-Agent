@@ -76,3 +76,10 @@ class ChatbotState(BaseModel):
     docs: List[Document] = Field(default_factory=list)
 
     chat_history: Annotated[List[BaseMessage],add_messages] = Field(default_factory=list)
+
+
+
+class ChatInput(BaseModel):
+    thread_id : Annotated[str,"thread_id of the conversation"]
+    question : Annotated[str,"Question asked by the user"]
+    
