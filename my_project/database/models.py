@@ -1,8 +1,7 @@
-from my_project.database.database import get_connection
+from mysql.connector.connection import MySQLConnection
 
 
-def create_users_table():
-    conn = get_connection()
+def create_users_table(conn : MySQLConnection):
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -16,9 +15,11 @@ def create_users_table():
     conn.commit()
 
     cursor.close()
-    conn.close()
     print("Table Created")
 
 
 if __name__ == "__main__":
-    create_users_table()
+    from my_project.database.database import get_connection
+    conn = get_connection()
+    create_users_table(conn)
+    conn.close()

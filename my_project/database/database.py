@@ -19,8 +19,4 @@ def get_connection():
         user=DB_USER,
         password=DB_PASSWORD
     )
-    print("Connected to database")
     return connection
-
-if __name__ == "__main__":
-    get_connection()

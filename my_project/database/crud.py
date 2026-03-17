@@ -1,7 +1,7 @@
-from my_project.database.database import get_connection
+from mysql.connector.connection import MySQLConnection
 
-def create_user(gmail, password, name):
-    conn = get_connection()
+
+def create_user(conn: MySQLConnection, gmail: str, password: str, name: str):
     cursor = conn.cursor()
 
     query = """
@@ -9,18 +9,19 @@ def create_user(gmail, password, name):
     VALUES (%s, %s, %s)
     """
 
-    cursor.execute(query, (gmail, password, name))
-
-    conn.commit()
-
-    cursor.close()
-    conn.close()
+    try:
+        cursor.execute(query, (gmail, password, name))
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        raise e
+    finally:
+        cursor.close()
 
     return {"message": "User created successfully"}
 
 
-def get_user(gmail):
-    conn = get_connection()
+def get_user(conn: MySQLConnection, gmail: str) -> dict | None:
     cursor = conn.cursor(dictionary=True)
 
     query = """
@@ -29,10 +30,10 @@ def get_user(gmail):
     WHERE gmail = %s
     """
 
-    cursor.execute(query, (gmail,))
-    user = cursor.fetchone()
 
-    cursor.close()
-    conn.close()
-
-    return user
+    try:
+        cursor.execute(query, (gmail,))
+        user = cursor.fetchone()
+        return user 
+    finally:
+        cursor.close()

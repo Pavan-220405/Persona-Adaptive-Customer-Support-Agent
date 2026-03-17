@@ -1,8 +1,9 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import FastAPI,HTTPException, Depends
 from my_project.rag.graph.agent import chatbot
 from my_project.rag.core.schemas import ChatInput, RegisterInput, LoginInput
 from my_project.database.crud import create_user, get_user
 from my_project.database.utils import hash_password, verify_password
+from my_project.database.database import get_connection
 
 
 
@@ -13,16 +14,24 @@ def root():
     return {"status": "Customer Support Chatbot API running"}
 
 
+def get_db_connection():
+    try:
+        conn = get_connection()
+        yield conn
+    finally:
+        conn.close()
+
 
 @app.post("/register")
-def register_user(user: RegisterInput):
-    existing_user = get_user(user.gmail)
+def register_user(user: RegisterInput, conn = Depends(get_db_connection)):
+    existing_user = get_user(conn=conn,gmail=user.gmail)
     if existing_user:
         raise HTTPException(status_code=400, detail="User already exists")
 
 
     hashed_password = hash_password(user.password)
     create_user(
+        conn=conn,
         gmail=user.gmail,
         password=hashed_password,
         name=user.name
@@ -32,8 +41,8 @@ def register_user(user: RegisterInput):
 
 
 @app.post("/login")
-def login_user(user: LoginInput):
-    db_user = get_user(user.gmail)
+def login_user(user: LoginInput, conn = Depends(get_db_connection)):
+    db_user = get_user(conn=conn,gmail=user.gmail)
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
 
@@ -48,8 +57,8 @@ def login_user(user: LoginInput):
 
 
 @app.post("/chat")
-def chat(input: ChatInput):
-    user = get_user(input.gmail)
+def chat(input: ChatInput, conn = Depends(get_db_connection)):
+    user = get_user(conn=conn,gmail=input.gmail)
     if not user:
         raise HTTPException(status_code=401, detail="User not registered")
 
